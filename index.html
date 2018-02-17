@@ -1,0 +1,168 @@
+<!doctype html>
+<head>
+<title>CodeMirror: Theme Demo</title>
+<meta charset="utf-8"/>
+<!-- <link rel=stylesheet href="css/docs.css"> -->
+<link rel=stylesheet href="main.css">
+<link rel="stylesheet" href="hopscotch.css">
+<link rel="stylesheet" href="codemirror.css">
+<!-- <link rel="stylesheet" href="css/theme/3024-day.css">
+<link rel="stylesheet" href="css/theme/3024-night.css">
+<link rel="stylesheet" href="css/theme/abcdef.css">
+<link rel="stylesheet" href="css/theme/ambiance.css">
+<link rel="stylesheet" href="css/theme/base16-dark.css">
+<link rel="stylesheet" href="css/theme/bespin.css">
+<link rel="stylesheet" href="css/theme/base16-light.css">
+<link rel="stylesheet" href="css/theme/blackboard.css">
+<link rel="stylesheet" href="css/theme/cobalt.css">
+<link rel="stylesheet" href="css/theme/colorforth.css">
+<link rel="stylesheet" href="css/theme/dracula.css">
+<link rel="stylesheet" href="css/theme/duotone-dark.css">
+<link rel="stylesheet" href="css/theme/duotone-light.css">
+<link rel="stylesheet" href="css/theme/eclipse.css">
+<link rel="stylesheet" href="css/theme/elegant.css">
+<link rel="stylesheet" href="css/theme/erlang-dark.css">
+<link rel="stylesheet" href="css/theme/hopscotch.css">
+<link rel="stylesheet" href="css/theme/icecoder.css">
+<link rel="stylesheet" href="css/theme/isotope.css">
+<link rel="stylesheet" href="css/theme/lesser-dark.css">
+<link rel="stylesheet" href="css/theme/liquibyte.css">
+<link rel="stylesheet" href="css/theme/material.css">
+<link rel="stylesheet" href="css/theme/mbo.css">
+<link rel="stylesheet" href="css/theme/mdn-like.css">
+<link rel="stylesheet" href="css/theme/midnight.css">
+<link rel="stylesheet" href="css/theme/monokai.css">
+<link rel="stylesheet" href="css/theme/neat.css">
+<link rel="stylesheet" href="css/theme/neo.css">
+<link rel="stylesheet" href="css/theme/night.css">
+<link rel="stylesheet" href="css/theme/oceanic-next.css">
+<link rel="stylesheet" href="css/theme/panda-syntax.css">
+<link rel="stylesheet" href="css/theme/paraiso-dark.css">
+<link rel="stylesheet" href="css/theme/paraiso-light.css">
+<link rel="stylesheet" href="css/theme/pastel-on-dark.css">
+<link rel="stylesheet" href="css/theme/railscasts.css">
+<link rel="stylesheet" href="css/theme/rubyblue.css">
+<link rel="stylesheet" href="css/theme/seti.css">
+<link rel="stylesheet" href="css/theme/shadowfox.css">
+<link rel="stylesheet" href="css/theme/solarized.css">
+<link rel="stylesheet" href="css/theme/the-matrix.css">
+<link rel="stylesheet" href="css/theme/tomorrow-night-bright.css">
+<link rel="stylesheet" href="css/theme/tomorrow-night-eighties.css">
+<link rel="stylesheet" href="css/theme/ttcn.css">
+<link rel="stylesheet" href="css/theme/twilight.css">
+<link rel="stylesheet" href="css/theme/vibrant-ink.css">
+<link rel="stylesheet" href="css/theme/xq-dark.css">
+<link rel="stylesheet" href="css/theme/xq-light.css">
+<link rel="stylesheet" href="css/theme/yeti.css">
+<link rel="stylesheet" href="css/theme/zenburn.css"> -->
+<script src="codemirror.js"></script>
+<script src="javascript.js"></script>
+<script src="active-line.js"></script>
+<script src="matchbrackets.js"></script>
+</head>
+<body>
+
+<textarea id="code" name="code">
+  function corner(){
+  move(3);
+  turn("R");
+  move(2); 
+}
+
+
+for(var i=0;i<5;i++){
+corner();
+}
+</textarea>
+
+<!-- <p>Select a theme: <select onchange="selectTheme()" id=select>
+    <option selected>default</option>
+    <option>3024-day</option>
+    <option>3024-night</option>
+    <option>abcdef</option>
+    <option>ambiance</option>
+    <option>base16-dark</option>
+    <option>base16-light</option>
+    <option>bespin</option>
+    <option>blackboard</option>
+    <option>cobalt</option>
+    <option>colorforth</option>
+    <option>dracula</option>
+    <option>duotone-dark</option>
+    <option>duotone-light</option>
+    <option>eclipse</option>
+    <option>elegant</option>
+    <option>erlang-dark</option>
+    <option>hopscotch</option>
+    <option>icecoder</option>
+    <option>isotope</option>
+    <option>lesser-dark</option>
+    <option>liquibyte</option>
+    <option>material</option>
+    <option>mbo</option>
+    <option>mdn-like</option>
+    <option>midnight</option>
+    <option>monokai</option>
+    <option>neat</option>
+    <option>neo</option>
+    <option>night</option>
+    <option>oceanic-next</option>
+    <option>panda-syntax</option>
+    <option>paraiso-dark</option>
+    <option>paraiso-light</option>
+    <option>pastel-on-dark</option>
+    <option>railscasts</option>
+    <option>rubyblue</option>
+    <option>seti</option>
+    <option>shadowfox</option>
+    <option>solarized dark</option>
+    <option>solarized light</option>
+    <option>the-matrix</option>
+    <option>tomorrow-night-bright</option>
+    <option>tomorrow-night-eighties</option>
+    <option>ttcn</option>
+    <option>twilight</option>
+    <option>vibrant-ink</option>
+    <option>xq-dark</option>
+    <option>xq-light</option>
+    <option>yeti</option>
+    <option>zenburn</option>
+</select>
+</p> -->
+
+<button id="runCode">run it</button>
+
+
+<div id="app">
+  
+    <div class="btns">
+      d: {{mailmain.direction}}
+      left:{{mailmain.left}}<br>top:{{mailmain.top}}<br>
+  next to house:{{NexttoHouse()}}<br>
+  <button @click="move()">move</button>
+  <button @click="turn(true)">turn cw</button>
+      <button @click="turn(false)">turn ccw</button>
+    </div>
+  
+  <div class="town">
+    <div v-for="x in map" v-bind:class="'tile-' + x"></div>
+    <div class="mailman"
+         v-bind:style="{ 
+                       marginLeft: mailmain.left * 50 + 'px', 
+                       marginTop: mailmain.top * 50 + 'px' }"
+         v-bind:class="{
+                      'right': mailmain.direction == 0,
+                      'down': mailmain.direction == 1,
+                      'left': mailmain.direction == 2,
+                      'up': mailmain.direction == 3,
+                      'moving': mailmain.moving == true
+       }"
+         >
+    </div>
+  </div>
+  <div v-if="Errors">{{Errors}}</div>
+</div>
+
+<script src="dist/bundle.js"></script>
+
+</body>
