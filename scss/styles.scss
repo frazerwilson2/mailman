@@ -69,3 +69,20 @@
 .btns {
   float: right;
 }
+
+// NEW
+.container {
+	display: grid;
+	grid-template-columns: auto 400px;
+}
+button {
+	padding: 10px;
+	font-size: 20px;
+}
+// .main-view {
+// 	width: 50%;
+// }
+
+// .map-view {
+// 	width: 50%;
+// }

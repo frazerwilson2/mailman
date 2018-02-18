@@ -95,7 +95,7 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_dist_vue__);
 
 const app = new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
@@ -252,7 +252,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_styles_scss__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_styles_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_styles_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vueApp__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui__ = __webpack_require__(12);
 
 
 
@@ -277,7 +277,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(7)(content, options);
+var update = __webpack_require__(6)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -312,19 +312,18 @@ if(false) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)(false);
+exports = module.exports = __webpack_require__(5)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 80px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0.5s; }\n\n.mailman.right {\n  background-image: url(\"/images/right.svg\"); }\n\n.mailman.right.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.down {\n  background-image: url(\"/images/down.svg\"); }\n\n.mailman.down.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.left {\n  background-image: url(\"/images/left.svg\"); }\n\n.mailman.left.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.up {\n  background-image: url(\"/images/up.svg\"); }\n\n.mailman.up.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n.btns {\n  float: right; }\n", ""]);
+exports.push([module.i, ".town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 80px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0.5s; }\n\n.mailman.right {\n  background-image: url(\"/images/right.svg\"); }\n\n.mailman.right.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.down {\n  background-image: url(\"/images/down.svg\"); }\n\n.mailman.down.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.left {\n  background-image: url(\"/images/left.svg\"); }\n\n.mailman.left.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.up {\n  background-image: url(\"/images/up.svg\"); }\n\n.mailman.up.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n.btns {\n  float: right; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 400px; }\n\nbutton {\n  padding: 10px;\n  font-size: 20px; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 5 */,
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -406,7 +405,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -472,7 +471,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(7);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -788,7 +787,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 
@@ -883,7 +882,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -11685,10 +11684,10 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(10).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(9).setImmediate))
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -11741,7 +11740,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(11);
+__webpack_require__(10);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11755,7 +11754,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11945,10 +11944,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(11)))
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12138,7 +12137,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
