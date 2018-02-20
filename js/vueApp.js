@@ -13,7 +13,7 @@ const app = new Vue({
       's','s','h','s','s','h','r','s'
     ],
     mailmain: {
-      left: 3,
+      left: 1,
       top: 1,
       direction: 0,
       moving: false
@@ -117,7 +117,7 @@ const app = new Vue({
        eval(arr[ran]);
        ran++;
        console.log(arr[ran]);
-       if(ran === loop){
+       if(ran === loop || !arr[ran]){
          clearInterval(test);
          app.EvalLevel();
        }

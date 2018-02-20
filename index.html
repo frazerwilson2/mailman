@@ -5,6 +5,7 @@
 <link rel=stylesheet href="main.css">
 <link rel="stylesheet" href="hopscotch.css">
 <link rel="stylesheet" href="codemirror.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
 <script src="codemirror.js"></script>
 <script src="javascript.js"></script>
@@ -13,27 +14,36 @@
 </head>
 <body>
 
+<div class="header">
+  <div class="logo">Mailman</div>
+</div>
 
 <div class="container">
   <div class="main-view">
     <textarea id="code" name="code">
-      function corner(){
-      move(3);
-      turn("R");
-      move(2); 
-    }
+function corner(){
+  move(5);
+  turn("R"); 
+}
 
 
-    for(var i=0;i<4;i++){
-    corner();
-    }
+for(var i=0;i<4;i++){
+  corner();
+}
     </textarea>
 
-    <button id="runCode">run it</button>
+    <div class="heading">
+      <h1>Mission 1: Do a thing</h1>
+      <button id="runCode">run it</button>
+    </div>
+
+    <div class="deets">
+      <p>Some info to go here about what you need to do this time. Some info to go here about what you need to do this time.</p>
+    </div>    
   </div>
 
-  <div class="map-view">
-    <div id="app">
+  <div class="map-view" id="app">
+    <div>
       
       <div class="town">
         <div v-for="x in map" v-bind:class="'tile-' + x"></div>

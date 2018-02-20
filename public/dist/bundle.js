@@ -112,7 +112,7 @@ const app = new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
       's','s','h','s','s','h','r','s'
     ],
     mailmain: {
-      left: 3,
+      left: 1,
       top: 1,
       direction: 0,
       moving: false
@@ -216,7 +216,7 @@ const app = new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
        eval(arr[ran]);
        ran++;
        console.log(arr[ran]);
-       if(ran === loop){
+       if(ran === loop || !arr[ran]){
          clearInterval(test);
          app.EvalLevel();
        }
@@ -317,7 +317,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 80px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0.5s; }\n\n.mailman.right {\n  background-image: url(\"/images/right.svg\"); }\n\n.mailman.right.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.down {\n  background-image: url(\"/images/down.svg\"); }\n\n.mailman.down.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.left {\n  background-image: url(\"/images/left.svg\"); }\n\n.mailman.left.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n.mailman.up {\n  background-image: url(\"/images/up.svg\"); }\n\n.mailman.up.moving {\n  animation: drive 0.5s steps(1) infinite; }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n.btns {\n  float: right; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 400px; }\n\nbutton {\n  padding: 10px;\n  font-size: 20px; }\n", ""]);
+exports.push([module.i, "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif; }\n\nhtml, body, .container {\n  height: 100%; }\n\n.header {\n  background: #3F3F3F;\n  height: 70px;\n  position: fixed;\n  width: 100%;\n  z-index: 2;\n  padding: 5px 30px; }\n  .header .logo {\n    color: #E2FAAF; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 460px;\n  padding-top: 70px; }\n\n.main-view, .map-view {\n  height: 100%;\n  padding: 30px; }\n\n.main-view {\n  background: #4A4A4A; }\n\n.heading {\n  padding: 20px 0;\n  clear: both;\n  display: inline-block;\n  width: 100%; }\n  .heading h1 {\n    display: inline-block;\n    color: white;\n    font-size: 26px;\n    font-weight: normal;\n    margin: 18px 0;\n    font-style: italic; }\n  .heading button {\n    float: right;\n    padding: 13px 20px;\n    font-size: 20px;\n    background: #E57070;\n    color: white;\n    border: none;\n    border-radius: 2px;\n    font-size: 34px;\n    text-transform: uppercase;\n    cursor: pointer; }\n\n.deets {\n  display: grid;\n  grid-template-columns: 6fr 4fr; }\n  .deets p {\n    color: white; }\n\n.map-view {\n  background: #E2FAAF; }\n\n.town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat;\n  border: 2px #4A4A4A solid; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 80px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0s; }\n  .mailman.right {\n    background-image: url(\"/images/right.svg\"); }\n  .mailman.down {\n    background-image: url(\"/images/down.svg\"); }\n  .mailman.left {\n    background-image: url(\"/images/left.svg\"); }\n  .mailman.up {\n    background-image: url(\"/images/up.svg\"); }\n  .mailman.moving {\n    animation: drive 0.5s steps(1) infinite; }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n", ""]);
 
 // exports
 
