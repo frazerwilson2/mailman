@@ -1,4 +1,7 @@
 import Vue from 'vue/dist/vue';
+import levels from './levels';
+import userFuncs from './users';
+
 const app = new Vue({
   el: '#app',
   data: {
@@ -31,7 +34,10 @@ const app = new Vue({
     HouseSquares: ["21","51","26","12","15","56","62","65"],
     RoadSquares: ["10","11","21","31","41","51","61","71","12","62","13","63","14","64","15","65","06","16","26","36","46","66","67","56"],
     Errors: false,
-    RunCommand: []
+    RunCommand: [],
+    level: 0,
+    success: false,
+    fail: false
   },
   methods: {
     move: function(){
@@ -81,6 +87,37 @@ const app = new Vue({
       }
       return false;
     },
+    WhichHouse: function(){
+      const pos = this.GetPos();
+      switch(pos){
+        case '21':
+          return 1;
+          break;
+        case '51':
+          return 2;
+          break;
+        case '62':
+          return 3;
+          break;
+        case '65':
+          return 4;
+          break;
+        case '56':
+          return 5;
+          break;
+        case '26':
+          return 6;
+          break;
+        case '15':
+          return 7;
+          break;
+        case '12':
+          return 8;
+          break;
+        default:
+          return null;
+      }
+    },
     IsRoadSquare: function(pos){
       for(var i=0; i<this.RoadSquares.length;i++){
         if(pos === this.RoadSquares[i]){
@@ -91,8 +128,9 @@ const app = new Vue({
     },
     DeliverLetter: function(){
       if(this.NexttoHouse()){
-        console.log('delivering!!');
-        this.Homes[1].delivered = true;
+        let house = this.WhichHouse();
+        console.log('delivered to house ' + house);
+        this.Homes[house].delivered = true;
       }
       else {
         this.ShowError('Not next to house');
@@ -104,10 +142,21 @@ const app = new Vue({
     ResetCommand: function(){
       this.RunCommand = [];
     },
+    ResetLevel: function(){
+      this.success = false;
+      this.fail = false;
+      this.mailmain = {
+        left: 1,
+        top: 1,
+        direction: 0,
+        moving: false
+      }
+    },
     PushCommand: function(cmd){
       this.RunCommand.push(cmd)
     },
-    InitCommands: function(){
+    InitCommands: function(level){
+      this.level = level;
       let arr = this.RunCommand;
       // console.log(arr);
       // eval(arr.join(""));
@@ -124,7 +173,19 @@ const app = new Vue({
       }, 1000);
     },
     EvalLevel: function(){
-      if(this.Homes[1].delivered === true){
+      let currLevel = levels[this.level];
+      console.log(currLevel);
+      // check if letters delivered
+      let success = true;
+      currLevel.delivered.forEach(function(x){
+          console.log('checking expected - ' + x);
+          console.log(app.Homes[x]);
+          if(!app.Homes[x].delivered){
+           success = false; 
+          }
+      });
+      console.log('mission - ' + success);
+      if(success){
         this.ShowSuccess();
       }
       else {
@@ -132,12 +193,16 @@ const app = new Vue({
       }
     },
     ShowSuccess: function(){
-      console.log('success');
       this.success = true;
     },
     ShowFail: function(){
       console.log('fail');
       this.fail = true;
+    },
+    NextLevel: function(){
+      console.log('do next level');
+      userFuncs.UpLevel();
+      this.ResetLevel();
     }
   }
 });

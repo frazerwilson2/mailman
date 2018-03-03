@@ -3,6 +3,7 @@ import app from './vueApp';
 const ui = function(){
 
 const funcs = {
+  currentLevel: 0,
   move: function (num){
     if(!num){num = 1}
     for (var i = 0; i < num; i++) {
@@ -17,19 +18,13 @@ const funcs = {
   deliverLetter: function (){
     app.PushCommand('app.DeliverLetter()');
     // app.Knock();
-  }
-}
-
-function move(num){
-  funcs.move(num);
-}
-
-function turn(cw){
-  funcs.turn(cw);
-}
-
-function deliverLetter(){
-  funcs.deliverLetter();
+  },
+  editor: CodeMirror.fromTextArea(document.getElementById("code"), {
+    lineNumbers: true,
+    styleActiveLine: true,
+    matchBrackets: true,
+    theme: "hopscotch"
+  })
 }
 
 // function repeat(fn, times) {
@@ -41,13 +36,6 @@ function deliverLetter(){
 //   }
 //   loop(times);
 // }
-
-  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-    lineNumbers: true,
-    styleActiveLine: true,
-    matchBrackets: true,
-    theme: "hopscotch"
-  });
 
 
   // var input = document.getElementById("select");
@@ -78,14 +66,6 @@ function deliverLetter(){
 // // 	if(x.text.includes(';'))
 // // });
 //     });
-
-document.addEventListener("DOMContentLoaded", function(event) {
-  document.querySelector('#runCode').addEventListener('click', function(){
-	app.ResetCommand();
-	eval(editor.getValue());
-	app.InitCommands();
-  });
-});
 
   return funcs;
 

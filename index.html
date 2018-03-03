@@ -15,21 +15,18 @@
 <body>
 
 <div class="header">
-  <div class="logo">Mailman</div>
+  <button id="signIn">sign in</button>
+  <button id="signOut">sign out</button>
+  <div class="logo">
+    <img src="images/logo.svg" />
+    <h2>Mailman</h2>
+  </div>
+  <p>Level <span id="currentLevel"></span></p>
 </div>
 
 <div class="container">
   <div class="main-view">
     <textarea id="code" name="code">
-function corner(){
-  move(5);
-  turn("R"); 
-}
-
-
-for(var i=0;i<4;i++){
-  corner();
-}
     </textarea>
 
     <div class="heading">
@@ -43,6 +40,18 @@ for(var i=0;i<4;i++){
   </div>
 
   <div class="map-view" id="app">
+    <div class="success-message" v-bind:class="{'show': success}">
+      <img src="images/success.svg" />
+      <h2>Delivery Success!</h2>
+      <button @click="NextLevel()">Next level</button>
+    </div>
+
+    <div class="fail-message" v-bind:class="{'show': fail}">
+      <img src="images/failed.svg" />
+      <h2>Delivery failed..</h2>
+      <button @click="ResetLevel()">Try again</button>
+    </div>
+    
     <div>
       
       <div class="town">
