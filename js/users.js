@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import ui from './ui';
+import levelsApp from './levelsVue';
 
 var uid = null;
 var currLevel = null;
@@ -24,7 +25,9 @@ const userFuncs = {
 		    // User is signed in.
 		    var isAnonymous = user.isAnonymous;
 		    uid = user.uid;
-		    console.log('user - ' + uid);
+		    if(user.email){
+		    	document.getElementById('userEmail').innerHTML = user.email;
+		    };
 
 			showLoginButton(true);
 		    userFuncs.getUserData(uid);
@@ -49,13 +52,13 @@ const userFuncs = {
 	},
 	getUserData: function (uid){
   	return firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
+  		console.log(snapshot);
   		var userData = snapshot.val();
-  		console.log(userData);
+  		// console.log(userData);
   		    if(!userData){
   		    	console.log('setting data');
   				firebase.database().ref('users/' + uid).set({
   					username: 'none',
-  					email: 'none',
   					level : 1,
   					code: `\/\/ Add some code...`
   				});
@@ -74,6 +77,28 @@ const userFuncs = {
   	  console.log('signed out');
   	}, function(error) {
   	  // An error happened.
+  	});
+  },
+  LinkAccount: function(){
+  	let email = "test@testy.com";
+  	let password = '123456';
+	var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+
+	firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
+	  console.log("Anonymous account successfully upgraded", user);
+	}, function(error) {
+	  console.log("Error upgrading anonymous account", error);
+	});
+  },
+  Login: function(){
+  	let email = "test@testy.com";
+  	let password = '123456';
+  	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  	  // Handle Errors here.
+  	  var errorCode = error.code;
+  	  var errorMessage = error.message;
+  	  console.log(errorMessage);
+  	  // ...
   	});
   },
   UpLevel: function(){
@@ -100,6 +125,7 @@ function showLoginButton(loggedin){
 function setUserLevel(){
 	document.getElementById('currentLevel').innerHTML = currLevel;
 	ui.currentLevel = currLevel;
+	levelsApp.UpdateLevel(currLevel);
 }
 
 export default userFuncs;

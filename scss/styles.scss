@@ -19,7 +19,7 @@ html, body, .container {
     height: 70px;
     position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 5;
     padding: 5px 30px;
 
     p {
@@ -103,10 +103,20 @@ button {
 	display: grid;
 	grid-template-columns: 6fr 4fr;
 
-	p {
+	p, li {
 		color: white;
 	}
+
+  li {
+    margin-bottom: 5px;
+    font-size: 12px;
+    
+    em {
+      color: #c1c1c1;
+    }
+  }
 }
+
 
 .map-view {
 	background: $green;
@@ -130,7 +140,7 @@ button {
 	left: 0;
 	width: 50px;
 	height: 50px;
-	background-size: 80px 40px;
+	background-size: 120px 40px;
 	background-repeat: no-repeat;
 	background-position: 3px center;
 	transition: margin 0.5s 0s;
@@ -154,6 +164,11 @@ button {
 	&.moving {
 	  animation: drive 0.5s steps(1) infinite;
 	}
+
+  &.delivering, &.moving.delivering {
+    animation: none;
+    background-position: -72px center;
+  }
 }
 
 .success-message, .fail-message {

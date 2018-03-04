@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue';
-import levels from './levels';
+import {levels} from './levels';
 import userFuncs from './users';
 
 const app = new Vue({
@@ -19,7 +19,8 @@ const app = new Vue({
       left: 1,
       top: 1,
       direction: 0,
-      moving: false
+      moving: false,
+      delivering: false
     },
     Homes: {
       1: { delivered: false },
@@ -129,8 +130,12 @@ const app = new Vue({
     DeliverLetter: function(){
       if(this.NexttoHouse()){
         let house = this.WhichHouse();
+        this.mailmain.delivering = true;
         console.log('delivered to house ' + house);
         this.Homes[house].delivered = true;
+        setTimeout(function(){
+          app.mailmain.delivering = false;
+        }, 500);
       }
       else {
         this.ShowError('Not next to house');
@@ -149,7 +154,8 @@ const app = new Vue({
         left: 1,
         top: 1,
         direction: 0,
-        moving: false
+        moving: false,
+        delivering: false
       }
     },
     PushCommand: function(cmd){

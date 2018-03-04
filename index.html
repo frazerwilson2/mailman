@@ -2,7 +2,6 @@
 <head>
 <title>CodeMirror: Theme Demo</title>
 <meta charset="utf-8"/>
-<link rel=stylesheet href="main.css">
 <link rel="stylesheet" href="hopscotch.css">
 <link rel="stylesheet" href="codemirror.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -20,23 +19,33 @@
   <div class="logo">
     <img src="images/logo.svg" />
     <h2>Mailman</h2>
+    <span id="userEmail"></span>
   </div>
   <p>Level <span id="currentLevel"></span></p>
 </div>
 
 <div class="container">
   <div class="main-view">
+    <button id="linkacc">link account</button>
+    <button id="loginTest">Logiin</button>
     <textarea id="code" name="code">
     </textarea>
 
-    <div class="heading">
-      <h1>Mission 1: Do a thing</h1>
-      <button id="runCode">run it</button>
-    </div>
+    <div id="levelsText" v-if="level">
+        <div class="heading">
+          <h1>Mission {{level}}: {{title}}</h1>
+          <button id="runCode">run it</button>
+        </div>
 
-    <div class="deets">
-      <p>Some info to go here about what you need to do this time. Some info to go here about what you need to do this time.</p>
-    </div>    
+        <div class="deets">
+          <p>{{description}}</p>
+
+          <ul class="docs">
+            <li v-for="x in docs"><em>{{GetDocsData(x).cmd}}</em> : {{GetDocsData(x).desc}}</li>
+          </ul>
+        </div>
+
+    </div>
   </div>
 
   <div class="map-view" id="app">
@@ -65,7 +74,8 @@
                           'down': mailmain.direction == 1,
                           'left': mailmain.direction == 2,
                           'up': mailmain.direction == 3,
-                          'moving': mailmain.moving == true
+                          'moving': mailmain.moving == true,
+                          'delivering': mailmain.delivering == true
            }"
              >
         </div>

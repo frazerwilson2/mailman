@@ -1,7 +1,8 @@
 import '../scss/styles.scss';
 
 import userFuncs from './users';
-import app from './vueApp';
+import app from './mailmanVue';
+import levelsApp from './levelsVue';
 import ui from './ui';
 
   userFuncs.Init();
@@ -12,6 +13,16 @@ import ui from './ui';
 
   document.getElementById('signOut').addEventListener('click', function(){
     userFuncs.SignOut();
+    app.ResetLevel();
+    levelsApp.ResetLevels();
+  });
+
+  document.getElementById('linkacc').addEventListener('click', function(){
+    userFuncs.LinkAccount();
+  });
+
+  document.getElementById('loginTest').addEventListener('click', function(){
+    userFuncs.Login();
   });
 
   document.addEventListener("DOMContentLoaded", function(event) {

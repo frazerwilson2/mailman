@@ -1,4 +1,5 @@
 const path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   entry: './js/index.js',
@@ -7,6 +8,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   watch: true,
+  plugins: [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: '"production"'
+    }
+  })
+  ],
   module: {
         rules: [{
             test: /\.scss$/,

@@ -1,4 +1,4 @@
-import app from './vueApp';
+import app from './mailmanVue';
 
 const ui = function(){
 
