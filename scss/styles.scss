@@ -73,6 +73,28 @@ button {
 	cursor: pointer;
 }
 
+.code-error {
+  position: absolute;
+  z-index: 5;
+  background: $red;
+  padding: 5px 10px;
+  width: calc(100% - 60px);
+  box-sizing: border-box;
+  color: white;
+  display: none;
+  cursor: pointer;
+
+  &:after {
+    content: 'X';
+    float: right;
+    font-weight: bold;
+  }
+
+  &.show {
+    display: block;
+  }
+}
+
 .main-view, .map-view {
 	height: 100%;
 	padding: 30px;

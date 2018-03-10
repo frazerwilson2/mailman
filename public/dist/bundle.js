@@ -7576,6 +7576,15 @@ const funcs = {
     __WEBPACK_IMPORTED_MODULE_0__mailmanVue__["a" /* default */].PushCommand('app.DeliverLetter()');
     // app.Knock();
   },
+  resetCodeError: function(){
+    document.querySelector('#codeError').classList.remove('show');
+    document.querySelector('#codeError').innerHTML = '';
+  },
+  setCodeError: function(err){
+    console.log(err);
+    document.querySelector('#codeError').classList.add('show')
+    document.querySelector('#codeError').innerHTML = err;
+  },
   editor: CodeMirror.fromTextArea(document.getElementById("code"), {
     lineNumbers: true,
     styleActiveLine: true,
@@ -7583,6 +7592,11 @@ const funcs = {
     theme: "hopscotch"
   })
 }
+
+document.querySelector('#codeError').addEventListener('click', function(){
+  __WEBPACK_IMPORTED_MODULE_0__mailmanVue__["a" /* default */].ResetLevel();
+  funcs.resetCodeError();
+});
 
 // function repeat(fn, times) {
 //   var loop = function (times) {
@@ -26261,7 +26275,14 @@ const app = new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
     RunCode: function(){
       __WEBPACK_IMPORTED_MODULE_3__mailmanVue__["a" /* default */].ResetCommand();
       __WEBPACK_IMPORTED_MODULE_2__users__["a" /* default */].SaveCodeEntry();
-      eval(__WEBPACK_IMPORTED_MODULE_4__ui__["a" /* default */].editor.getValue());
+      __WEBPACK_IMPORTED_MODULE_4__ui__["a" /* default */].resetCodeError();
+      try{
+        eval(__WEBPACK_IMPORTED_MODULE_4__ui__["a" /* default */].editor.getValue());
+      }
+      catch(error){
+        __WEBPACK_IMPORTED_MODULE_4__ui__["a" /* default */].setCodeError(error);
+        // console.log(error);
+      }
       __WEBPACK_IMPORTED_MODULE_3__mailmanVue__["a" /* default */].InitCommands(__WEBPACK_IMPORTED_MODULE_4__ui__["a" /* default */].currentLevel);
     }
   }
@@ -26485,7 +26506,7 @@ exports = module.exports = __webpack_require__(94)(false);
 
 
 // module
-exports.push([module.i, "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif; }\n\nhtml, body, .container {\n  height: 100%; }\n\n.header {\n  background: #3F3F3F;\n  height: 70px;\n  position: fixed;\n  width: 100%;\n  z-index: 5;\n  padding: 5px 30px; }\n  .header p {\n    color: white; }\n  .header a {\n    float: right;\n    color: lightblue; }\n  .header .logo {\n    color: #E2FAAF; }\n    .header .logo h2 {\n      font-size: 26px;\n      margin: 2px 0 1px; }\n    .header .logo img {\n      width: 55px;\n      float: left;\n      margin-right: 10px;\n      margin-top: -2px; }\n  .header button {\n    float: right;\n    margin-left: 5px; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 460px;\n  padding-top: 70px; }\n\na {\n  color: #E57070; }\n\nbutton {\n  padding: 13px 20px;\n  font-size: 20px;\n  background: #E57070;\n  color: white;\n  border: none;\n  border-radius: 2px;\n  text-transform: uppercase;\n  cursor: pointer; }\n\n.main-view, .map-view {\n  height: 100%;\n  padding: 30px;\n  position: relative; }\n\n.main-view {\n  background: #4A4A4A; }\n\n.heading {\n  padding: 20px 0;\n  clear: both;\n  display: inline-block;\n  width: 100%; }\n  .heading h1 {\n    display: inline-block;\n    color: white;\n    font-size: 26px;\n    font-weight: normal;\n    margin: 18px 0;\n    font-style: italic; }\n  .heading button {\n    float: right;\n    padding: 13px 20px;\n    font-size: 34px; }\n\n.deets {\n  display: grid;\n  grid-template-columns: 6fr 4fr; }\n  .deets p, .deets li {\n    color: white; }\n  .deets li {\n    margin-bottom: 5px;\n    font-size: 12px; }\n    .deets li em {\n      color: #c1c1c1; }\n\n.modal {\n  position: fixed;\n  width: 400px;\n  top: 100px;\n  background: #E2FAAF;\n  left: calc(50% - 200px);\n  padding: 30px;\n  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);\n  z-index: 5;\n  display: none; }\n  .modal.show {\n    display: block; }\n\n.map-view {\n  background: #E2FAAF; }\n\n.town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat;\n  border: 2px #4A4A4A solid; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 120px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0s; }\n  .mailman.right {\n    background-image: url(\"/images/right.svg\"); }\n  .mailman.down {\n    background-image: url(\"/images/down.svg\"); }\n  .mailman.left {\n    background-image: url(\"/images/left.svg\"); }\n  .mailman.up {\n    background-image: url(\"/images/up.svg\"); }\n  .mailman.moving {\n    animation: drive 0.5s steps(1) infinite; }\n  .mailman.delivering, .mailman.moving.delivering {\n    animation: none;\n    background-position: -72px center; }\n\n.success-message, .fail-message {\n  position: absolute;\n  visibility: hidden;\n  background: rgba(0, 0, 0, 0.7);\n  transition: opacity 0.5s;\n  opacity: 0;\n  top: 0px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  text-align: center; }\n  .success-message h2, .fail-message h2 {\n    color: white;\n    margin-bottom: 10px; }\n  .success-message img, .fail-message img {\n    width: 300px;\n    margin: auto;\n    position: relative;\n    margin-bottom: -20px; }\n  .success-message.show, .fail-message.show {\n    opacity: 1;\n    visibility: visible; }\n\n.success-message img {\n  animation: jump 1s infinite alternate;\n  animation-timing-function: cubic-bezier(0.13, 0.59, 0.45, 0.54); }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n@keyframes jump {\n  from {\n    top: 0px; }\n  to {\n    top: -50px; } }\n", ""]);
+exports.push([module.i, "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif; }\n\nhtml, body, .container {\n  height: 100%; }\n\n.header {\n  background: #3F3F3F;\n  height: 70px;\n  position: fixed;\n  width: 100%;\n  z-index: 5;\n  padding: 5px 30px; }\n  .header p {\n    color: white; }\n  .header a {\n    float: right;\n    color: lightblue; }\n  .header .logo {\n    color: #E2FAAF; }\n    .header .logo h2 {\n      font-size: 26px;\n      margin: 2px 0 1px; }\n    .header .logo img {\n      width: 55px;\n      float: left;\n      margin-right: 10px;\n      margin-top: -2px; }\n  .header button {\n    float: right;\n    margin-left: 5px; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 460px;\n  padding-top: 70px; }\n\na {\n  color: #E57070; }\n\nbutton {\n  padding: 13px 20px;\n  font-size: 20px;\n  background: #E57070;\n  color: white;\n  border: none;\n  border-radius: 2px;\n  text-transform: uppercase;\n  cursor: pointer; }\n\n.code-error {\n  position: absolute;\n  z-index: 5;\n  background: #E57070;\n  padding: 5px 10px;\n  width: calc(100% - 60px);\n  box-sizing: border-box;\n  color: white;\n  display: none;\n  cursor: pointer; }\n  .code-error:after {\n    content: 'X';\n    float: right;\n    font-weight: bold; }\n  .code-error.show {\n    display: block; }\n\n.main-view, .map-view {\n  height: 100%;\n  padding: 30px;\n  position: relative; }\n\n.main-view {\n  background: #4A4A4A; }\n\n.heading {\n  padding: 20px 0;\n  clear: both;\n  display: inline-block;\n  width: 100%; }\n  .heading h1 {\n    display: inline-block;\n    color: white;\n    font-size: 26px;\n    font-weight: normal;\n    margin: 18px 0;\n    font-style: italic; }\n  .heading button {\n    float: right;\n    padding: 13px 20px;\n    font-size: 34px; }\n\n.deets {\n  display: grid;\n  grid-template-columns: 6fr 4fr; }\n  .deets p, .deets li {\n    color: white; }\n  .deets li {\n    margin-bottom: 5px;\n    font-size: 12px; }\n    .deets li em {\n      color: #c1c1c1; }\n\n.modal {\n  position: fixed;\n  width: 400px;\n  top: 100px;\n  background: #E2FAAF;\n  left: calc(50% - 200px);\n  padding: 30px;\n  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);\n  z-index: 5;\n  display: none; }\n  .modal.show {\n    display: block; }\n\n.map-view {\n  background: #E2FAAF; }\n\n.town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat;\n  border: 2px #4A4A4A solid; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 120px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0s; }\n  .mailman.right {\n    background-image: url(\"/images/right.svg\"); }\n  .mailman.down {\n    background-image: url(\"/images/down.svg\"); }\n  .mailman.left {\n    background-image: url(\"/images/left.svg\"); }\n  .mailman.up {\n    background-image: url(\"/images/up.svg\"); }\n  .mailman.moving {\n    animation: drive 0.5s steps(1) infinite; }\n  .mailman.delivering, .mailman.moving.delivering {\n    animation: none;\n    background-position: -72px center; }\n\n.success-message, .fail-message {\n  position: absolute;\n  visibility: hidden;\n  background: rgba(0, 0, 0, 0.7);\n  transition: opacity 0.5s;\n  opacity: 0;\n  top: 0px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  text-align: center; }\n  .success-message h2, .fail-message h2 {\n    color: white;\n    margin-bottom: 10px; }\n  .success-message img, .fail-message img {\n    width: 300px;\n    margin: auto;\n    position: relative;\n    margin-bottom: -20px; }\n  .success-message.show, .fail-message.show {\n    opacity: 1;\n    visibility: visible; }\n\n.success-message img {\n  animation: jump 1s infinite alternate;\n  animation-timing-function: cubic-bezier(0.13, 0.59, 0.45, 0.54); }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n@keyframes jump {\n  from {\n    top: 0px; }\n  to {\n    top: -50px; } }\n", ""]);
 
 // exports
 

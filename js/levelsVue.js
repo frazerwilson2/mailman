@@ -36,7 +36,14 @@ const app = new Vue({
     RunCode: function(){
       mmApp.ResetCommand();
       userFuncs.SaveCodeEntry();
-      eval(ui.editor.getValue());
+      ui.resetCodeError();
+      try{
+        eval(ui.editor.getValue());
+      }
+      catch(error){
+        ui.setCodeError(error);
+        // console.log(error);
+      }
       mmApp.InitCommands(ui.currentLevel);
     }
   }

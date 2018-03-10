@@ -19,6 +19,15 @@ const funcs = {
     app.PushCommand('app.DeliverLetter()');
     // app.Knock();
   },
+  resetCodeError: function(){
+    document.querySelector('#codeError').classList.remove('show');
+    document.querySelector('#codeError').innerHTML = '';
+  },
+  setCodeError: function(err){
+    console.log(err);
+    document.querySelector('#codeError').classList.add('show')
+    document.querySelector('#codeError').innerHTML = err;
+  },
   editor: CodeMirror.fromTextArea(document.getElementById("code"), {
     lineNumbers: true,
     styleActiveLine: true,
@@ -26,6 +35,11 @@ const funcs = {
     theme: "hopscotch"
   })
 }
+
+document.querySelector('#codeError').addEventListener('click', function(){
+  app.ResetLevel();
+  funcs.resetCodeError();
+});
 
 // function repeat(fn, times) {
 //   var loop = function (times) {
