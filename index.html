@@ -14,8 +14,9 @@
 <body>
 
 <div class="header">
-  <button id="signIn">sign in</button>
-  <button id="signOut">sign out</button>
+  <button id="signIn" class="account-btn">sign in</button>
+  <button id="signOut" class="account-btn">sign out</button>
+  <button id="linkacc">link account</button>
   <div class="logo">
     <img src="images/logo.svg" />
     <h2>Mailman</h2>
@@ -26,7 +27,6 @@
 
 <div class="container">
   <div class="main-view">
-    <button id="linkacc">link account</button>
     <button id="loginTest">Logiin</button>
     <textarea id="code" name="code">
     </textarea>
@@ -34,7 +34,7 @@
     <div id="levelsText" v-if="level">
         <div class="heading">
           <h1>Mission {{level}}: {{title}}</h1>
-          <button id="runCode">run it</button>
+          <button id="runCode" @click="RunCode()">run it</button>
         </div>
 
         <div class="deets">
@@ -84,6 +84,29 @@
     </div>
   </div>
   
+</div>
+
+<div id="accModal">
+  <div class="modal" v-bind:class="{'show': showModal}">
+    <div v-if="loggedOut">
+      <p>Its mailman.. </p>
+      <button @click="SignInAnon()">Give it a go!!</button>
+    </div>
+    <div v-if="SignUpForm">
+      <form v-on:submit.prevent>
+        <div>
+          <label>Email</label>
+          <input type="email" v-model="form.email" />        
+        </div>
+        <div>
+          <label>Password</label>
+          <input type="password" v-model="form.password" />        
+        </div>
+        <button @click="SignUpLinkAcc()">Sign up</button>
+        <p>{{err}}</p>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script src="dist/bundle.js"></script>

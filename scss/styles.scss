@@ -47,6 +47,7 @@ html, body, .container {
 
     button {
     	float: right;
+      margin-left: 5px;
     }
 }
 
@@ -114,6 +115,22 @@ button {
     em {
       color: #c1c1c1;
     }
+  }
+}
+
+.modal {
+  position: fixed;
+  width: 400px;
+  top: 100px;
+  background: $green;
+  left: calc(50% - 200px);
+  padding: 30px;
+  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: none;
+
+  &.show {
+    display: block;
   }
 }
 

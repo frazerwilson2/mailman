@@ -1,6 +1,7 @@
 import * as firebase from "firebase";
 import ui from './ui';
 import levelsApp from './levelsVue';
+import accountApp from './accountVue';
 
 var uid = null;
 var currLevel = null;
@@ -30,12 +31,14 @@ const userFuncs = {
 		    };
 
 			showLoginButton(true);
+			showLoginModal(false);
 		    userFuncs.getUserData(uid);
 
 		    // ...
 		  } else {
 		  	console.log('logged out');
 		  	showLoginButton(false);
+		  	showLoginModal(true);
 		    // User is signed out.
 		    // ...
 		  }
@@ -51,24 +54,33 @@ const userFuncs = {
 		});
 	},
 	getUserData: function (uid){
+		console.log('id- ' + uid);
   	return firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
-  		console.log(snapshot);
+  		// console.log(snapshot);
   		var userData = snapshot.val();
-  		// console.log(userData);
-  		    if(!userData){
-  		    	console.log('setting data');
-  				firebase.database().ref('users/' + uid).set({
-  					username: 'none',
-  					level : 1,
-  					code: `\/\/ Add some code...`
-  				});
-  				currLevel = 1;
-  		    }
-  		document.getElementById('code').innerHTML = userData.code;
-  		ui.editor.setOption("value", userData.code);
-	    currLevel = userData.level;
-	    setUserLevel();
-  	  // ...
+  		console.log(userData);
+	    if(!userData){
+	    	console.log('setting data');
+			firebase.database().ref('users/' + uid).set({
+				validated: false,
+				level : 1,
+				code: `\/\/ Add some code...`
+			});
+			currLevel = 1;
+		    toggleLinkAcc(false);
+	    }
+	    else if(userData){
+	    	if(userData.code){
+				// document.getElementById('code').innerHTML = userData.code;
+				ui.editor.setOption("value", userData.code);
+		    }
+		    if(userData.level){
+			    currLevel = userData.level;
+		    }
+		    toggleLinkAcc(userData.validated);
+	    }
+	    accountApp.SetLoggedIn();
+		setUserLevel();
   	});
   },
   SignOut: function(){
@@ -79,14 +91,16 @@ const userFuncs = {
   	  // An error happened.
   	});
   },
-  LinkAccount: function(){
-  	let email = "test@testy.com";
-  	let password = '123456';
-	var credential = firebase.auth.EmailAuthProvider.credential(email, password);
+  LinkAccount: function(form){
+	var credential = firebase.auth.EmailAuthProvider.credential(form.email, form.password);
 
 	firebase.auth().currentUser.linkWithCredential(credential).then(function(user) {
-	  console.log("Anonymous account successfully upgraded", user);
+		accountApp.SuccessForm();
+		toggleLinkAcc(true);
+		console.log("Anonymous account successfully upgraded", user);
+		userFuncs.UserValidated();
 	}, function(error) {
+		accountApp.ShowErrors(error.message);
 	  console.log("Error upgrading anonymous account", error);
 	});
   },
@@ -108,6 +122,10 @@ const userFuncs = {
 	firebase.database().ref('users/' + uid).update(updates);
 	setUserLevel();
   },
+  UserValidated: function(){
+	var updates = {validated: true};
+	firebase.database().ref('users/' + uid).update(updates);
+  },
   SaveCodeEntry: function(){
   	let currentCode = ui.editor.getValue();
     var updates = {code: currentCode};
@@ -115,11 +133,20 @@ const userFuncs = {
   }
 };
 
+function toggleLinkAcc(toggle){
+	console.log('valid acc - ' + toggle);
+	document.querySelector('#linkacc').style.display = toggle ? 'none' : 'inline-block';
+}
+
 function showLoginButton(loggedin){
-	var btns = document.querySelectorAll('.header button')
+	var btns = document.querySelectorAll('.header button.account-btn')
 	btns.forEach(x => x.style.display = 'none');
 	var showBtn = loggedin ? 'signOut' : 'signIn';
 	document.getElementById(showBtn).style.display = 'block';
+}
+
+function showLoginModal(show){
+	accountApp.SetShowModal(show);
 }
 
 function setUserLevel(){

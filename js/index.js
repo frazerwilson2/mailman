@@ -3,6 +3,7 @@ import '../scss/styles.scss';
 import userFuncs from './users';
 import app from './mailmanVue';
 import levelsApp from './levelsVue';
+import accountVue from './accountVue';
 import ui from './ui';
 
   userFuncs.Init();
@@ -15,36 +16,38 @@ import ui from './ui';
     userFuncs.SignOut();
     app.ResetLevel();
     levelsApp.ResetLevels();
+    accountVue.ShowStart();
   });
 
   document.getElementById('linkacc').addEventListener('click', function(){
-    userFuncs.LinkAccount();
+    // userFuncs.LinkAccount();
+    accountVue.ShowLinkAcc();
   });
 
   document.getElementById('loginTest').addEventListener('click', function(){
     userFuncs.Login();
   });
 
-  document.addEventListener("DOMContentLoaded", function(event) {
-    document.querySelector('#runCode').addEventListener('click', function(){
-    app.ResetCommand();
-    userFuncs.SaveCodeEntry();
-    eval(ui.editor.getValue());
-    app.InitCommands(ui.currentLevel);
-    });
-  });
+  // document.addEventListener("DOMContentLoaded", function(event) {
+    // document.querySelector('#runCode').addEventListener('click', function(){
+    // app.ResetCommand();
+    // userFuncs.SaveCodeEntry();
+    // eval(ui.editor.getValue());
+    // app.InitCommands(ui.currentLevel);
+    // });
+  // });
 
-  function move(num){
-    ui.move(num);
-  }
+  // function move(num){
+  //   ui.move(num);
+  // }
 
-  function turn(cw){
-    ui.turn(cw);
-  }
+  // function turn(cw){
+  //   ui.turn(cw);
+  // }
 
-  function deliverLetter(){
-    ui.deliverLetter();
-  }
+  // function deliverLetter(){
+  //   ui.deliverLetter();
+  // }
 
 // document.getElementById('incrementlevel').addEventListener('click', function(){
 //   console.log('do func');

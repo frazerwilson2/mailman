@@ -1,6 +1,10 @@
 import Vue from 'vue/dist/vue';
 import {levels, docs} from './levels';
 
+import userFuncs from './users';
+import mmApp from './mailmanVue';
+import ui from './ui';
+
 function getDefaultData() {
     return {
         level: null,
@@ -28,8 +32,26 @@ const app = new Vue({
     ResetLevels: function(){
       // this.$data = getDefaultData();
       Object.assign(this.$data, getDefaultData());
+    },
+    RunCode: function(){
+      mmApp.ResetCommand();
+      userFuncs.SaveCodeEntry();
+      eval(ui.editor.getValue());
+      mmApp.InitCommands(ui.currentLevel);
     }
   }
 });
+
+function move(num){
+  ui.move(num);
+}
+
+function turn(cw){
+  ui.turn(cw);
+}
+
+function deliverLetter(){
+  ui.deliverLetter();
+}
 
 export default app;
