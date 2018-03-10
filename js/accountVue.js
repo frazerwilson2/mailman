@@ -7,6 +7,7 @@ const account = new Vue({
 		showModal: true,
 		loggedOut: true,
 		SignUpForm: false,
+		LogInForm: false,
 		form: {
 			email: '',
 			password: ''
@@ -44,6 +45,15 @@ const account = new Vue({
 		ShowStart: function(){
 			this.loggedOut = true;
 			this.SignUpForm = false;
+			this.LogInForm = false;
+		},
+		ShowLoginForm: function(){
+			this.LogInForm = true;
+			this.loggedOut = false;
+		},
+		LoginAcc: function(){
+			this.err = null;
+			userFuncs.Login(this.form);
 		}
 	}
 });

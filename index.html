@@ -14,7 +14,6 @@
 <body>
 
 <div class="header">
-  <button id="signIn" class="account-btn">sign in</button>
   <button id="signOut" class="account-btn">sign out</button>
   <button id="linkacc">link account</button>
   <div class="logo">
@@ -22,12 +21,10 @@
     <h2>Mailman</h2>
     <span id="userEmail"></span>
   </div>
-  <p>Level <span id="currentLevel"></span></p>
 </div>
 
 <div class="container">
   <div class="main-view">
-    <button id="loginTest">Logiin</button>
     <textarea id="code" name="code">
     </textarea>
 
@@ -91,8 +88,9 @@
     <div v-if="loggedOut">
       <p>Its mailman.. </p>
       <button @click="SignInAnon()">Give it a go!!</button>
+      <p @click="ShowLoginForm()">or <a>login</a> to existing account</p>
     </div>
-    <div v-if="SignUpForm">
+    <div v-if="SignUpForm || LogInForm">
       <form v-on:submit.prevent>
         <div>
           <label>Email</label>
@@ -102,7 +100,8 @@
           <label>Password</label>
           <input type="password" v-model="form.password" />        
         </div>
-        <button @click="SignUpLinkAcc()">Sign up</button>
+        <button @click="SignUpLinkAcc()" v-if="SignUpForm">Sign up</button>
+        <button @click="LoginAcc()" v-if="LogInForm">Log in</button>
         <p>{{err}}</p>
       </form>
     </div>

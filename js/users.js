@@ -55,33 +55,40 @@ const userFuncs = {
 	},
 	getUserData: function (uid){
 		console.log('id- ' + uid);
-  	return firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
-  		// console.log(snapshot);
-  		var userData = snapshot.val();
-  		console.log(userData);
-	    if(!userData){
-	    	console.log('setting data');
-			firebase.database().ref('users/' + uid).set({
-				validated: false,
-				level : 1,
-				code: `\/\/ Add some code...`
-			});
-			currLevel = 1;
-		    toggleLinkAcc(false);
-	    }
-	    else if(userData){
-	    	if(userData.code){
-				// document.getElementById('code').innerHTML = userData.code;
-				ui.editor.setOption("value", userData.code);
+  		firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
+	  		// console.log(snapshot);
+	  		var userData = snapshot.val();
+	  		console.log(userData);
+		    if(!userData){
+		    	userFuncs.SetUpNewUser();
 		    }
-		    if(userData.level){
-			    currLevel = userData.level;
+		    else {
+		    	userFuncs.SetupUI(userData);
 		    }
-		    toggleLinkAcc(userData.validated);
-	    }
-	    accountApp.SetLoggedIn();
-		setUserLevel();
-  	});
+		    accountApp.SetLoggedIn();
+			setUserLevel();
+  		});
+  },
+  SetUpNewUser: function(){
+    	console.log('setting data');
+		firebase.database().ref('users/' + uid).set({
+			validated: false,
+			level : 1,
+			code: `\/\/ Add some code...`
+		});
+		currLevel = 1;
+	    toggleLinkAcc(false);
+	    firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
+	    	var userData = snapshot.val();
+	    	console.log(userData);
+	    	userFuncs.SetupUI(userData);
+	    });
+  },
+  SetupUI: function(userData){
+	// document.getElementById('code').innerHTML = userData.code;
+	ui.editor.setOption("value", userData.code);
+    currLevel = userData.level;
+    toggleLinkAcc(userData.validated);
   },
   SignOut: function(){
   	firebase.auth().signOut().then(function() {
@@ -104,15 +111,11 @@ const userFuncs = {
 	  console.log("Error upgrading anonymous account", error);
 	});
   },
-  Login: function(){
-  	let email = "test@testy.com";
-  	let password = '123456';
-  	firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+  Login: function(form){
+  	firebase.auth().signInWithEmailAndPassword(form.email, form.password).catch(function(error) {
   	  // Handle Errors here.
-  	  var errorCode = error.code;
-  	  var errorMessage = error.message;
-  	  console.log(errorMessage);
-  	  // ...
+  	  accountApp.ShowErrors(error.message);
+  	  console.log(error.message);
   	});
   },
   UpLevel: function(){
@@ -139,10 +142,10 @@ function toggleLinkAcc(toggle){
 }
 
 function showLoginButton(loggedin){
-	var btns = document.querySelectorAll('.header button.account-btn')
-	btns.forEach(x => x.style.display = 'none');
-	var showBtn = loggedin ? 'signOut' : 'signIn';
-	document.getElementById(showBtn).style.display = 'block';
+	document.getElementById('signOut').style.display = 'none';
+	if(loggedin){
+		document.getElementById('signOut').style.display = 'block';
+	};
 }
 
 function showLoginModal(show){
@@ -150,7 +153,6 @@ function showLoginModal(show){
 }
 
 function setUserLevel(){
-	document.getElementById('currentLevel').innerHTML = currLevel;
 	ui.currentLevel = currLevel;
 	levelsApp.UpdateLevel(currLevel);
 }

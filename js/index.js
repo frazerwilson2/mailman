@@ -8,10 +8,6 @@ import ui from './ui';
 
   userFuncs.Init();
 
-  document.getElementById('signIn').addEventListener('click', function(){
-    userFuncs.SignInAnon();
-  });
-
   document.getElementById('signOut').addEventListener('click', function(){
     userFuncs.SignOut();
     app.ResetLevel();
@@ -22,10 +18,6 @@ import ui from './ui';
   document.getElementById('linkacc').addEventListener('click', function(){
     // userFuncs.LinkAccount();
     accountVue.ShowLinkAcc();
-  });
-
-  document.getElementById('loginTest').addEventListener('click', function(){
-    userFuncs.Login();
   });
 
   // document.addEventListener("DOMContentLoaded", function(event) {
