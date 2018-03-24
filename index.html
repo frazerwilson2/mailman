@@ -65,6 +65,7 @@
     <div class="fail-message" v-bind:class="{'show': fail}">
       <img src="images/failed.svg" />
       <h2>Delivery failed..</h2>
+      <div v-if="Errors" class="error m-bott">{{Errors}}</div>
       <button @click="ResetLevel()">Try again</button>
     </div>
     
@@ -87,7 +88,6 @@
              >
         </div>
       </div>
-      <div v-if="Errors">{{Errors}}</div>
     </div>
   </div>
   

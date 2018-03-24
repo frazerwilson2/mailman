@@ -138,7 +138,7 @@ const app = new Vue({
         }, 500);
       }
       else {
-        this.ShowError('Not next to house');
+        this.ShowError('You tried to deliver to a house whilst not next to it!');
       }
     },
     ShowError: function(msg){
@@ -150,6 +150,7 @@ const app = new Vue({
     ResetLevel: function(){
       this.success = false;
       this.fail = false;
+      this.Errors = false;
       this.mailmain = {
         left: 1,
         top: 1,
@@ -183,6 +184,14 @@ const app = new Vue({
       console.log(currLevel);
       // check if letters delivered
       let success = true;
+        if(currLevel.position){
+          const pos = this.GetPos();
+          console.log(pos, currLevel.position);
+          if(pos !== currLevel.position){
+            console.log('not in right place');
+            success = false; 
+          }
+      }
       currLevel.delivered.forEach(function(x){
           console.log('checking expected - ' + x);
           console.log(app.Homes[x]);
@@ -192,10 +201,14 @@ const app = new Vue({
       });
       console.log('mission - ' + success);
       if(success){
-        this.ShowSuccess();
+        setTimeout(function(){
+          app.ShowSuccess();
+        }, 800);
       }
       else {
-        this.ShowFail();
+        setTimeout(function(){
+          app.ShowFail();
+        }, 800);
       }
     },
     ShowSuccess: function(){

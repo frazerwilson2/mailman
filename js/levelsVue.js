@@ -35,8 +35,16 @@ const app = new Vue({
     },
     RunCode: function(){
       mmApp.ResetCommand();
+      mmApp.ResetLevel();
       userFuncs.SaveCodeEntry();
       ui.resetCodeError();
+      let lineCount = ui.editor.lineCount();
+      console.log(lineCount);
+      if(lineCount <= 1){
+        if(!ui.editor.getValue().length){
+          return;
+        }
+      }
       try{
         eval(ui.editor.getValue());
       }
