@@ -8,11 +8,23 @@ module.exports = {
     path: path.resolve(__dirname, 'public/dist'),
     filename: 'bundle.js'
   },
-  watch: true,
+  watch: false,
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
+      }
+    }),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        output: {
+          comments: false,
+          beautify: false,
+        },
+        compress: {
+          warnings: false,
+          drop_console: true
+        }
       }
     })
   ],
