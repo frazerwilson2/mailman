@@ -15,6 +15,10 @@ html, body, .container {
 	height: 100%;
 }
 
+a {
+  cursor: pointer;
+}
+
 .header {
 	background: #3F3F3F;
     height: 70px;
@@ -27,19 +31,20 @@ html, body, .container {
     	color: white;
     }
 
-    a {
+    .account-area {
     	float: right;
     	color: lightblue;
+      margin: 5px 0;
+    }
+
+    span {
+      display: inline-block;
+      margin: 16px 10px 0;
     }
 
     .logo {
-    	color: $green;
-    	h2 {
-        font-size: 26px;
-        margin: 2px 0 1px;
-    	}
     	img {
-    		width: 55px;
+    		width: 300px;
     		float: left;
     		margin-right: 10px;
         margin-top: -2px;
@@ -159,11 +164,57 @@ button {
   &.show {
     display: block;
   }
+
+  img {
+    max-width: 100%;
+  }
+
+  p {
+    margin: 10px 0;
+  }
 }
 
+.modal-base.show {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 5;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
 
 .map-view {
 	background: $green;
+}
+
+form {
+  > div.row {
+    clear: both;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  input {
+    padding: 10px;
+  }
+
+  label {
+    padding: 10px 0;
+  }
+}
+
+.error {
+  color: #ad1111;
 }
 
 .town {
