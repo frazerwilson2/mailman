@@ -18,6 +18,11 @@ const account = new Vue({
 		SetShowModal: function(show){
 			this.showModal = show;
 		},
+		EvalModal: function(){
+			if(!this.loggedOut){
+				this.SetShowModal(false);
+			}
+		},
 		SetLoggedIn: function(){
 			this.loggedOut = false;
 		},

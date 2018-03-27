@@ -26213,69 +26213,98 @@ function continueResumableUpload(location, authWrapper, url, blob, chunkSize, ma
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return docs; });
 const levels = {
 	1: {
-		title: 'move a bit',
-		description: 'Try out the move func by moving along a bit',
+		title: 'Let\'s get moving',
+		description: `What's all this then?
+		<br>Using the code area above, we can program instructions for the postman 
+		to complete his tasks.
+		<br><br>
+		Let's begin. Above, remove the comment on line 1 and enter:
+		<br><em>move();</em>
+		<br><br>This is a <strong>function</strong> which will make the postman move.`,
 		docs: ['move'],
 		delivered: [],
 		position: '21'
 	},
 	2: {
-		title: 'move a bit more',
-		description: 'Try out the move func by moving along a bit along the path',
-		docs: ['move', 'deliver'],
+		title: 'Moving some more..',
+		description: `Great work!
+		<br>So, a function is always followed by brackets and a semicolon. This means we can put stuff in the brackets to change the function.
+		<br><br>For example, if you put a number in the brackets of our <em>move()</em>
+		function, the postman will walk that amount of spaces.
+		<br><br>Use the <em>move()</em> function with a number to walk to house 2`,
+		docs: ['move'],
 		delivered: [],
 		position: '51'
 	},
 	3: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Deliver a letter',
+		description: `Cool, so now lets deliver a letter!
+		<br>So, we know how to walk to house 2, but how do we deliver a letter?
+		<br>For this, use the <em>deliverLetter()</em> function. Again, this function needs to be one word (without spaces) and followed by brackets and semicolon
+		<br><br>For this challenge, first use <em>move()</em> to walk to house 2, then use <em>deliverLetter()</em> to deliver to house 2`,
 		docs: ['move', 'deliver'],
 		delivered: [2],
 		position: '51'
 	},
 	4: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'More deliveries',
+		description: `Lets practice that a bit more.
+		<br><br>This time, use a combination of functions to deliver to house 1 and 2`,
 		docs: ['move', 'deliver'],
 		delivered: [1, 2]
 	},
 	5: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Turning the corner',
+		description: `Ok, so now lets move a little further.
+		<br><br>In order to turn the corner and walk to the other houses, we need a new function. Use the <em>turn()</em> function to make the postman turn, however you 
+		need to add 'L' or 'R' inside the brackets to turn left or right respectively.
+		<br><br>For example, turn right by adding <em>turn('R')</em>
+		<br>For this task simply walk to house 3`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [],
 		position: '62'
 	},
 	6: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Even more deliveries..',
+		description: `Ok, so this time you need to deliver a letter to houses 1 and 3. You will need to use <em>move()</em>, <em>turn()</em> and <em>deliverLetter()</em> to achieve this`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [1, 3]
 	},
 	7: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'The big walk!',
+		description: `Ok, so use your <em>move()</em> and <em>turn()</em> functions to walk all the way round the road, passing every house. Finish on the exact same spot that you started`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [],
 		position: '11'
 	},
 	8: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Introducing for loops',
+		description: `great work!
+		<br><br>Now, looking at that code, there is quite alot of duplication, which 
+		can quickly become messy and hard to maintain. Is there a simpler way?
+		<br><br>In Javascript, you can use a <strong>for loop</strong> to make code repeat multiple times. This is how it looks:
+		<br><br>for (var i = 0; i < 3; i++) {
+		<br>&emsp;move();
+		<br>}
+		<br><br>This looks complicated, but it will simply repeat all the code inside the curly braces, in this example the <em>move()</em> function. It will repeat 3 times because we set this in the rules of the loop (the <em>i < 3</em> bit).
+		<br>Add this example code to test out a for loop`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [],
-		position: '51'
+		position: '41'
 	},
 	9: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Walk the circuit again',
+		description: `Now that you have built a for loop, you can adapt it to achieve more. For this task, you need to once more walk the loop, passing each house. 
+		<br><br>You will need to adapt the code inside the for loop, as well as the number of times to repeat`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [],
 		position: '11'
 	},
 	10: {
-		title: 'move the lot',
-		description: 'Try out the move func with numbers',
+		title: 'Deliver that mail!',
+		description: `Ok, this is it, time to do the rounds!
+		<br><br>We have learnt how to call functions, letting us walk, turn and deliver. We have also learnt how to use a for loop to repeat tasks. Now lets use them all together!
+		<br><br>So, to complete this task and section, deliver a letter to every house in the street. Good luck!`,
 		docs: ['move', 'deliver', 'turn'],
 		delivered: [1,2,3,4,5,6,7,8]
 	}
@@ -26400,6 +26429,11 @@ const account = new __WEBPACK_IMPORTED_MODULE_0_vue_dist_vue___default.a({
 	methods: {
 		SetShowModal: function(show){
 			this.showModal = show;
+		},
+		EvalModal: function(){
+			if(!this.loggedOut){
+				this.SetShowModal(false);
+			}
 		},
 		SetLoggedIn: function(){
 			this.loggedOut = false;
@@ -26577,7 +26611,7 @@ exports = module.exports = __webpack_require__(94)(false);
 
 
 // module
-exports.push([module.i, "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif; }\n\nhtml, body, .container {\n  height: 100%; }\n\na {\n  cursor: pointer; }\n\n.header {\n  background: #3F3F3F;\n  height: 70px;\n  position: fixed;\n  width: 100%;\n  z-index: 5;\n  padding: 5px 30px; }\n  .header p {\n    color: white; }\n  .header .account-area {\n    float: right;\n    color: lightblue;\n    margin: 5px 0; }\n  .header span {\n    display: inline-block;\n    margin: 16px 10px 0; }\n  .header .logo img {\n    width: 300px;\n    float: left;\n    margin-right: 10px;\n    margin-top: -2px; }\n  .header button {\n    float: right;\n    margin-left: 5px; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 460px;\n  padding-top: 70px; }\n\na {\n  color: #E57070; }\n\nbutton {\n  padding: 13px 20px;\n  font-size: 20px;\n  background: #E57070;\n  color: white;\n  border: none;\n  border-radius: 2px;\n  text-transform: uppercase;\n  cursor: pointer; }\n\n.code-error {\n  position: absolute;\n  z-index: 5;\n  background: #E57070;\n  padding: 5px 10px;\n  width: calc(100% - 60px);\n  box-sizing: border-box;\n  color: white;\n  display: none;\n  cursor: pointer; }\n  .code-error:after {\n    content: 'X';\n    float: right;\n    font-weight: bold; }\n  .code-error.show {\n    display: block; }\n\n.main-view, .map-view {\n  height: 100%;\n  padding: 30px;\n  position: relative; }\n\n.main-view {\n  background: #4A4A4A; }\n\n.heading {\n  padding: 20px 0;\n  clear: both;\n  display: inline-block;\n  width: 100%; }\n  .heading h1 {\n    display: inline-block;\n    color: white;\n    font-size: 26px;\n    font-weight: normal;\n    margin: 18px 0;\n    font-style: italic; }\n  .heading button {\n    float: right;\n    padding: 13px 20px;\n    font-size: 34px; }\n\n.deets {\n  display: grid;\n  grid-template-columns: 6fr 4fr; }\n  .deets p, .deets li {\n    color: white; }\n  .deets li {\n    margin-bottom: 5px;\n    font-size: 12px; }\n    .deets li em {\n      color: #c1c1c1; }\n\n.modal {\n  position: fixed;\n  width: 400px;\n  top: 100px;\n  background: #E2FAAF;\n  left: calc(50% - 200px);\n  padding: 30px;\n  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);\n  z-index: 5;\n  display: none; }\n  .modal.show {\n    display: block; }\n  .modal img {\n    max-width: 100%; }\n  .modal p {\n    margin: 10px 0; }\n\n.modal-base.show {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: transparent;\n  z-index: 5; }\n\n.center {\n  text-align: center; }\n\n.right {\n  text-align: right; }\n\n.map-view {\n  background: #E2FAAF; }\n\nform > div.row {\n  clear: both;\n  margin: 10px 0;\n  display: grid;\n  grid-template-columns: 1fr 2fr; }\n\nform input {\n  padding: 10px; }\n\nform label {\n  padding: 10px 0; }\n\n.error {\n  color: #ad1111; }\n\n.m-bott {\n  margin-bottom: 15px; }\n\n.town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat;\n  border: 2px #4A4A4A solid; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 50px;\n  height: 50px;\n  background-size: 120px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0s; }\n  .mailman.right {\n    background-image: url(\"/images/right.svg\"); }\n  .mailman.down {\n    background-image: url(\"/images/down.svg\"); }\n  .mailman.left {\n    background-image: url(\"/images/left.svg\"); }\n  .mailman.up {\n    background-image: url(\"/images/up.svg\"); }\n  .mailman.moving {\n    animation: drive 0.5s steps(1) infinite; }\n  .mailman.delivering, .mailman.moving.delivering {\n    animation: none;\n    background-position: -72px center; }\n\n.success-message, .fail-message {\n  position: absolute;\n  visibility: hidden;\n  background: rgba(0, 0, 0, 0.7);\n  transition: opacity 0.5s;\n  opacity: 0;\n  top: 0px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  text-align: center; }\n  .success-message h2, .fail-message h2 {\n    color: white;\n    margin-bottom: 10px; }\n  .success-message img, .fail-message img {\n    width: 300px;\n    margin: auto;\n    position: relative;\n    margin-bottom: -20px; }\n  .success-message.show, .fail-message.show {\n    opacity: 1;\n    visibility: visible; }\n\n.success-message img {\n  animation: jump 1s infinite alternate;\n  animation-timing-function: cubic-bezier(0.13, 0.59, 0.45, 0.54); }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n@keyframes jump {\n  from {\n    top: 0px; }\n  to {\n    top: -50px; } }\n", ""]);
+exports.push([module.i, "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif; }\n\nhtml, body, .container {\n  height: 100%; }\n\na {\n  cursor: pointer; }\n\n.header {\n  background: #3F3F3F;\n  height: 70px;\n  position: fixed;\n  width: 100%;\n  z-index: 5;\n  padding: 5px 30px; }\n  .header p {\n    color: white; }\n  .header .account-area {\n    float: right;\n    color: lightblue;\n    margin: 5px 0; }\n  .header span {\n    display: inline-block;\n    margin: 16px 10px 0; }\n  .header .logo img {\n    width: 300px;\n    float: left;\n    margin-right: 10px;\n    margin-top: -2px; }\n  .header button {\n    float: right;\n    margin-left: 5px; }\n\n.container {\n  display: grid;\n  grid-template-columns: auto 460px;\n  padding-top: 70px; }\n\na {\n  color: #E57070; }\n\nbutton {\n  padding: 13px 20px;\n  font-size: 20px;\n  background: #E57070;\n  color: white;\n  border: none;\n  border-radius: 2px;\n  text-transform: uppercase;\n  cursor: pointer; }\n\n.code-error {\n  position: absolute;\n  z-index: 5;\n  background: #E57070;\n  padding: 5px 10px;\n  width: calc(100% - 60px);\n  box-sizing: border-box;\n  color: white;\n  display: none;\n  cursor: pointer; }\n  .code-error:after {\n    content: 'X';\n    float: right;\n    font-weight: bold; }\n  .code-error.show {\n    display: block; }\n\n.main-view, .map-view {\n  height: 100%;\n  padding: 30px;\n  position: relative; }\n\n.main-view {\n  background: #4A4A4A; }\n\n.heading {\n  padding: 20px 0;\n  clear: both;\n  display: inline-block;\n  width: 100%; }\n  .heading h1 {\n    display: inline-block;\n    color: white;\n    font-size: 26px;\n    font-weight: normal;\n    margin: 18px 0;\n    font-style: italic; }\n  .heading button {\n    float: right;\n    padding: 13px 20px;\n    font-size: 34px; }\n\n.deets {\n  display: grid;\n  grid-template-columns: 6fr 4fr; }\n  .deets ul {\n    padding-left: 40px; }\n  .deets p, .deets li {\n    color: white;\n    font-family: sans-serif;\n    line-height: 20px;\n    font-weight: 100; }\n  .deets li {\n    margin-bottom: 5px;\n    font-size: 12px; }\n    .deets li em {\n      color: #c1c1c1; }\n\n.modal {\n  position: fixed;\n  width: 400px;\n  top: 100px;\n  background: #E2FAAF;\n  left: calc(50% - 200px);\n  padding: 30px;\n  box-shadow: 0 0 10px 1000px rgba(0, 0, 0, 0.5);\n  z-index: 5;\n  display: none; }\n  .modal.show {\n    display: block; }\n  .modal img {\n    max-width: 100%; }\n  .modal p {\n    margin: 10px 0; }\n\n.modal-base.show {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: transparent;\n  z-index: 5; }\n\n.center {\n  text-align: center; }\n\n.right {\n  text-align: right; }\n\n.map-view {\n  background: #E2FAAF; }\n\nform > div.row {\n  clear: both;\n  margin: 10px 0;\n  display: grid;\n  grid-template-columns: 1fr 2fr; }\n\nform input {\n  padding: 10px; }\n\nform label {\n  padding: 10px 0; }\n\n.error {\n  color: #ad1111; }\n\n.m-bott {\n  margin-bottom: 15px; }\n\n.town {\n  display: grid;\n  grid-template-columns: repeat(8, 50px);\n  grid-template-rows: repeat(8, 50px);\n  position: relative;\n  background-image: url(\"/images/background.svg\");\n  background-size: 400px;\n  background-repeat: no-repeat;\n  border: 2px #4A4A4A solid; }\n\n.mailman {\n  background-image: url(\"/images/right1.svg\");\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 40px;\n  height: 50px;\n  background-size: 110px 40px;\n  background-repeat: no-repeat;\n  background-position: 3px center;\n  transition: margin 0.5s 0s; }\n  .mailman.delivering:before {\n    content: '';\n    background: url(/images/mail.svg);\n    width: 10px;\n    height: 10px;\n    position: absolute;\n    background-size: cover;\n    animation-fill-mode: forwards; }\n  .mailman.right {\n    background-image: url(\"/images/right.svg\"); }\n    .mailman.right.delivering {\n      background-position: -66px center; }\n      .mailman.right.delivering:before {\n        animation: deliverUp 1s;\n        animation-fill-mode: forwards; }\n  .mailman.down {\n    background-image: url(\"/images/down.svg\"); }\n    .mailman.down.delivering:before {\n      animation: deliverRight 1s;\n      animation-fill-mode: forwards; }\n  .mailman.left {\n    background-image: url(\"/images/left.svg\"); }\n    .mailman.left.delivering:before {\n      animation: deliverDown 1s;\n      animation-fill-mode: forwards; }\n  .mailman.up {\n    background-image: url(\"/images/up.svg\"); }\n    .mailman.up.delivering:before {\n      animation: deliverLeft 1s;\n      animation-fill-mode: forwards; }\n  .mailman.moving {\n    animation: drive 0.5s steps(1) infinite; }\n  .mailman.delivering, .mailman.moving.delivering {\n    animation: none;\n    background-position: -72px center; }\n\n.success-message, .fail-message {\n  position: absolute;\n  visibility: hidden;\n  background: rgba(0, 0, 0, 0.7);\n  transition: opacity 0.5s;\n  opacity: 0;\n  top: 0px;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 2;\n  text-align: center; }\n  .success-message h2, .fail-message h2 {\n    color: white;\n    margin-bottom: 10px; }\n  .success-message img, .fail-message img {\n    width: 300px;\n    margin: auto;\n    position: relative;\n    margin-bottom: -20px; }\n  .success-message.show, .fail-message.show {\n    opacity: 1;\n    visibility: visible; }\n\n.success-message img {\n  animation: jump 1s infinite alternate;\n  animation-timing-function: cubic-bezier(0.13, 0.59, 0.45, 0.54); }\n\n@keyframes drive {\n  0% {\n    background-position: -35px center; }\n  50% {\n    background-position: 3px center; }\n  100% {\n    background-position: -35px center; } }\n\n@keyframes jump {\n  from {\n    top: 0px; }\n  to {\n    top: -50px; } }\n\n@keyframes deliverUp {\n  from {\n    top: 0px;\n    opacity: 1; }\n  to {\n    top: -50px;\n    opacity: 0; } }\n\n@keyframes deliverRight {\n  from {\n    left: 40px;\n    top: 20px;\n    opacity: 1; }\n  to {\n    left: 90px;\n    top: 20px;\n    opacity: 0; } }\n\n@keyframes deliverDown {\n  from {\n    top: 20px;\n    opacity: 1; }\n  to {\n    top: 70px;\n    opacity: 0; } }\n\n@keyframes deliverLeft {\n  from {\n    left: 0px;\n    top: 20px;\n    opacity: 1; }\n  to {\n    left: -50px;\n    top: 20px;\n    opacity: 0; } }\n", ""]);
 
 // exports
 

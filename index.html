@@ -24,7 +24,7 @@
 <div class="header">
   <div class="account-area">
   <button id="signOut" class="account-btn">sign out</button>
-  <button id="linkacc">link account</button>
+  <button id="linkacc">create account</button>
   <span id="userEmail"></span>
   </div>
   <div class="logo">
@@ -45,7 +45,7 @@
         </div>
 
         <div class="deets">
-          <p>{{description}}</p>
+          <p v-html="description"></p>
 
           <ul class="docs">
             <li v-for="x in docs"><em>{{GetDocsData(x).cmd}}</em> : {{GetDocsData(x).desc}}</li>
@@ -58,13 +58,13 @@
   <div class="map-view" id="app">
     <div class="success-message" v-bind:class="{'show': success}">
       <img src="images/success.svg" />
-      <h2>Delivery Success!</h2>
+      <h2>Success!</h2>
       <button @click="NextLevel()">Next level</button>
     </div>
 
     <div class="fail-message" v-bind:class="{'show': fail}">
       <img src="images/failed.svg" />
-      <h2>Delivery failed..</h2>
+      <h2>Task failed..</h2>
       <div v-if="Errors" class="error m-bott">{{Errors}}</div>
       <button @click="ResetLevel()">Try again</button>
     </div>
@@ -95,7 +95,7 @@
 
 
 <div id="accModal">
-  <div class="modal-base" @click="SetShowModal(false)" v-bind:class="{'show': showModal}"></div>
+  <div class="modal-base" @click="EvalModal()" v-bind:class="{'show': showModal}"></div>
   <div class="modal" v-bind:class="{'show': showModal}">
     <div v-if="loggedOut">
       <img src="images/site-logo-grey.svg" />
